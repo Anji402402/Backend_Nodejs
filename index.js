@@ -1,30 +1,64 @@
+// const express = require("express");
+// const dotEnv = require('dotenv');
+// const mongoose = require('mongoose');
+// const vendorRoutes = require("./routes/vendorRoutes");
+// const bodyParser = require('body-parser');
+// const firmRoutes = require('./routes/firmRoutes');
+// const productRoutes = require('./routes/ProductRoutes');
+// //const bodyParser =require('body-parser')
+// const cors = require('cors');
+// const path = require('path')
+
+// const app = express()
+
+// const PORT = 5000;
+// // Load environment variables first
+// dotEnv.config();
+// // //Middleware
+// //app.use("*",cors())
+// app.use(cors({
+//   origin: "https://react-food-backend-dashboard-7mda.vercel.app",
+
+// }));
+
+// mongoose.connect(process.env.MONGO_URI) // Database connection
+//     .then(() => console.log("MongoDB connected successfully!"))
+//     .catch((error) => console.log(error))
+// // Routes
+// app.use(bodyParser.json());
+// app.use('/vendor', vendorRoutes);
+// app.use('/firm', firmRoutes)
+// app.use('/product', productRoutes);
+// app.use('/uploads', express.static('uploads'));
+
+// app.listen(PORT, () => {
+//     console.log(`server started and running at ${PORT}`);
+// });
+
+// app.use('/home', (req, res) => {
+//     res.send("<h1> Welcome to SUBY");
+// });
 const express = require("express");
 const dotEnv = require('dotenv');
 const mongoose = require('mongoose');
-const vendorRoutes = require("./routes/vendorRoutes");
+const vendorRoutes = require('./routes/vendorRoutes');
 const bodyParser = require('body-parser');
 const firmRoutes = require('./routes/firmRoutes');
-const productRoutes = require('./routes/ProductRoutes');
-//const bodyParser =require('body-parser')
+const productRoutes = require('./routes/productRoutes');
 const cors = require('cors');
 const path = require('path')
 
 const app = express()
 
-const PORT = 5000;
-// Load environment variables first
+const PORT = process.env.PORT || 5000;
+
 dotEnv.config();
-// //Middleware
-//app.use("*",cors())
-app.use(cors({
-  origin: "https://react-food-backend-dashboard-7mda.vercel.app",
+app.use(cors())
 
-}));
-
-mongoose.connect(process.env.MONGO_URI) // Database connection
+mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connected successfully!"))
     .catch((error) => console.log(error))
-// Routes
+
 app.use(bodyParser.json());
 app.use('/vendor', vendorRoutes);
 app.use('/firm', firmRoutes)
@@ -35,9 +69,9 @@ app.listen(PORT, () => {
     console.log(`server started and running at ${PORT}`);
 });
 
-app.use('/home', (req, res) => {
+app.use('/', (req, res) => {
     res.send("<h1> Welcome to SUBY");
-});
+})
 
 
 
