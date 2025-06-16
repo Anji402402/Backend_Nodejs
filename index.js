@@ -15,7 +15,11 @@ const PORT = 5000;
 // Load environment variables first
 dotEnv.config();
 // //Middleware
-app.use("*",cors())
+//app.use("*",cors())
+app.use(cors({
+  origin: "https://react-food-backend-dashboard-7mda.vercel.app",
+
+}));
 
 mongoose.connect(process.env.MONGO_URI) // Database connection
     .then(() => console.log("MongoDB connected successfully!"))
