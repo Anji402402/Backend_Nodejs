@@ -5,6 +5,7 @@ const vendorRoutes = require("./routes/vendorRoutes");
 const bodyParser = require('body-parser');
 const firmRoutes = require('./routes/firmRoutes');
 const productRoutes = require('./routes/ProductRoutes');
+//const bodyParser =require('body-parser')
 const cors = require('cors');
 const path = require('path')
 
@@ -14,7 +15,7 @@ const PORT = 5000;
 // Load environment variables first
 dotEnv.config();
 // //Middleware
-app.use(cors())
+app.use("*",cors())
 
 mongoose.connect(process.env.MONGO_URI) // Database connection
     .then(() => console.log("MongoDB connected successfully!"))
