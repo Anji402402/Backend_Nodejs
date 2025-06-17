@@ -1,9 +1,8 @@
-const mongoose = require('mongoose')
-
+const mongoose = require("mongoose");
 const vendorSchema = new mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        required: true
     },
     email: {
         type: String,
@@ -18,6 +17,8 @@ const vendorSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Firm'
     }]
-});
-const Vendor = mongoose.model('Vendor', vendorSchema);
+}, { timestamps: true }); // Added timestamps for createdAt & updatedAt
+
+const Vendor = mongoose.model("Vendor", vendorSchema);
+
 module.exports = Vendor;
